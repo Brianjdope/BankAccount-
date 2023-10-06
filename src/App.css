@@ -9,20 +9,21 @@
 
 
 .App-header {
-  background-color: #282c34;
+  background-color: #3c475d;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #709ffe;
   padding: 100px;
+  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
 .profile-picture {
   width: 120px;
-  border: white 1px solid;
-  border-radius: 15px;
+  border: white 4px solid;
+  border-radius: 20px;
   margin-right: 10px;
 }
 
@@ -31,6 +32,10 @@
   font-size: 32px;
   align-items: start;
   margin-bottom: 16px;
+  color: white;
+  background-color: #55627c;
+  border-radius: 30px;
+  padding: 10px;
 }
 
 .message-text{
@@ -42,7 +47,7 @@
   margin-right: 8px;
 }
 .timestamp {
-  color: #808080;
+  color: #b6b6b6;
   font-size: 24px;
 }
 
