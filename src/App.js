@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <b>👋 Welcome to the Main Chatroom! </b>
+        <b>👋😺 Welcome to the Main Chatroom! </b>
         <div>This chatroom provides you with new cat facts.</div>
         <div><i>Friday, October 6th</i></div>
         <SingleMessage></SingleMessage>
