@@ -3,4 +3,8 @@ public class BankAccount {
     public BankAccount() {
         balance = 0;
     }
+
+    public void deposit(int depositAmount) {
+        this.balance += depositAmount;
+    }
 }
