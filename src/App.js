@@ -21,6 +21,20 @@ function App() {
           <ChatHeader />
           <MessagesList />
           <MessageInput />
+          <b>👋😺 Welcome to the Main Chatroom! </b>
+        <div>This chatroom provides you with new cat facts.</div>
+        <div><i>Friday, October 6th</i></div>
+        <div>👤 User Information:</div>
+        <MyUserProfile></MyUserProfile>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
         </div>
       </main>
     </div>
