@@ -7,9 +7,13 @@ const port = 3000
 app.use(cors());
 
 const response = {
-    name: "Test",
-    color: "Blue",
-    location: "Test City",
+    name: "Caren",
+    color: "Red",
+    location: "Leonia",
+    age: "17",
+    gender: "Female",
+    grade: "Senior",
+    status: "Online",
 }
 
 app.get('/', (req, res) => {
