@@ -3,27 +3,26 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 50vmin;
   pointer-events: none;
 }
 
 
 .App-header {
-  background-color: #3c475d;
+  background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #709ffe;
-  padding: 100px;
-  font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  color: blue;
+  padding: 50px;
 }
 
 .profile-picture {
   width: 120px;
-  border: white 4px solid;
-  border-radius: 20px;
+  border: blue 1px solid;
+  border-radius: 15px;
   margin-right: 10px;
 }
 
@@ -31,11 +30,7 @@
   display: flex;
   font-size: 32px;
   align-items: start;
-  margin-bottom: 16px;
-  color: white;
-  background-color: #55627c;
-  border-radius: 30px;
-  padding: 10px;
+  margin-bottom: 32px;
 }
 
 .message-text{
@@ -47,11 +42,10 @@
   margin-right: 8px;
 }
 .timestamp {
-  color: #b6b6b6;
+  color: yellow;
   font-size: 24px;
 }
 
 .App-link {
-  color: #61dafb;
+  color: rgb(193, 255, 193) ;
 }
-
