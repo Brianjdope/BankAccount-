@@ -9,6 +9,7 @@ function App() {
         <b>👋😺 Welcome to the Main Chatroom! </b>
         <div>This chatroom provides you with new cat facts.</div>
         <div><i>Friday, October 6th</i></div>
+        <MyUserProfile></MyUserProfile>
         <SingleMessage></SingleMessage>
         <SingleMessage></SingleMessage>
         <SingleMessage></SingleMessage>
@@ -23,7 +24,26 @@ function App() {
   );
 }
 
+function MyUserProfile(){
+  const [data, setData] = useState([]);
 
+  const fetchInfo = () => {
+    return fetch('http://localhost:3000/')
+      .then((res) => res.json())
+      .then((d) => setData(d))
+  }
+
+  useEffect(() => {
+    fetchInfo();
+  }, []);
+
+
+  return <div>
+    <p>Name: {data.name}</p>
+    <p>Location: {data.location}</p>
+    <p>Color: {data.color}</p>
+  </div>
+}
 function SingleMessage() {
   const names = ['albert', 'brian', 'caren'];
   const thisMessageName = names[Math.floor(Math.random() * 3)];
