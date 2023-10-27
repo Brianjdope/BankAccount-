@@ -88,6 +88,9 @@ const response = {
     status: "Online",
 }
 
+// TODO: return a list of channels that the user is in
+const channels = {}
+
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   res.end(JSON.stringify(response));
@@ -97,6 +100,11 @@ app.get('/messages', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   const messages = await getChatRoomMessages();
   res.end(JSON.stringify(messages));
+});
+
+app.get('/channels', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(channels));
 })
 
 app.listen(port, () => {
