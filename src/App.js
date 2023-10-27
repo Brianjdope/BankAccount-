@@ -1,87 +1,123 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
-import { useEffect, useState } from 'react';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <b>👋😺 Welcome to the Main Chatroom! </b>
-        <div>This chatroom provides you with new cat facts.</div>
-        <div><i>Friday, October 6th</i></div>
-        <div>👤 User Information:</div>
-        <MyUserProfile></MyUserProfile>
-        <SingleMessage></SingleMessage>
-        <SingleMessage></SingleMessage>
-        <SingleMessage></SingleMessage>
-        <SingleMessage></SingleMessage>
-        <SingleMessage></SingleMessage>
-        <SingleMessage></SingleMessage>
-        <SingleMessage></SingleMessage>
-        <SingleMessage></SingleMessage>
-        <SingleMessage></SingleMessage>
+    <div className="slack-app">
+      <header className="slack-header">
+        <div className="slack-logo">
+          <img src={logo} alt="Slack Logo" />
+        </div>
+        <div className="team-name">
+          <b>Your Team Name</b>
+        </div>
       </header>
+      <main className="slack-main">
+        <div className="sidebar">
+          <UserProfile />
+          <ChannelsList />
+        </div>
+        <div className="chat-container">
+          <ChatHeader />
+          <MessagesList />
+          <MessageInput />
+        </div>
+      </main>
     </div>
   );
 }
 
-function MyUserProfile(){
-  const [data, setData] = useState([]);
-
-  const fetchInfo = () => {
-    return fetch('http://localhost:3000/')
-      .then((res) => res.json())
-      .then((d) => setData(d))
-  }
-
-  useEffect(() => {
-    fetchInfo();
-  }, []);
-
-
-  return <div>
-    <p>Name: {data.name}</p>
-    <p>Color: {data.color}</p>
-    <p>Location: {data.location}</p>
-    <p>Age: {data.age}</p>
-    <p>Gender: {data.gender}</p>
-    <p>Grade: {data.grade}</p>
-    <p>Status: {data.status}</p>
-  </div>
-}
-function SingleMessage() {
-  const names = ['albert', 'brian', 'caren'];
-  const thisMessageName = names[Math.floor(Math.random() * 3)];
-
-  const [data, setData] = useState([]);
-
-  const fetchInfo = () => {
-    return fetch('https://cat-fact.herokuapp.com/facts/random')
-      .then((res) => res.json())
-      .then((d) => setData(d.text))
-  }
-
-  useEffect(() => {
-    fetchInfo();
-  }, []);
-
+function UserProfile() {
+  const userData = {
+    name: "Caren",
+    color: "Red",
+    location: "Leonia",
+    age: "17",
+    gender: "Female",
+    grade: "Senior",
+    status: "Online",
+  };
 
   return (
-    <div className='single-message'>
-      <img className="profile-picture" src="https://thenounproject.com/api/private/icons/4003258/edit/?backgroundShape=SQUARE&backgroundShapeColor=%23000000&backgroundShapeOpacity=0&exportSize=752&flipX=false&flipY=false&foregroundColor=%23000000&foregroundOpacity=1&imageFormat=png&rotation=0" />
-      <div className='message-text'>
-        <div className='metadata'>
-          <span className='username'>
-            <b>{thisMessageName}</b>
-          </span>
-          <span className='timestamp'>
-            {new Date().toLocaleTimeString()}
-          </span>
-        </div>
-        <div>
-          {data}
-        </div>
+    <div className="user-profile">
+      <img
+        className="profile-picture"
+        src="https://your-profile-picture-url.png"
+        alt="User Profile"
+      />
+      <div className="user-details">
+        <p className="user-name"><b>{userData.name}</b></p>
+        <p className="user-status">{userData.status}</p>
       </div>
+    </div>
+  );
+}
+
+function ChannelsList() {
+  // You can render a list of channels here
+  return (
+    <div className="channels-list">
+      {/* Render a list of channels */}
+    </div>
+  );
+}
+
+function ChatHeader() {
+  return (
+    <div className="chat-header">
+      <div className="channel-info">
+        <b>#general</b>
+      </div>
+      <div className="members-count">
+        Members: 100
+      </div>
+    </div>
+  );
+}
+
+function MessagesList() {
+  const names = ['albert', 'brian', 'caren'];
+
+  const generateRandomMessage = () => {
+    const thisMessageName = names[Math.floor(Math.random() * names.length)];
+    return {
+      text: "This is a sample message.",
+      username: thisMessageName,
+      timestamp: new Date().toLocaleTimeString(),
+    };
+  };
+
+  // Simulate a list of messages
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const newMessages = [];
+    for (let i = 0; i < 10; i++) {
+      newMessages.push(generateRandomMessage());
+    }
+    setMessages(newMessages);
+  }, []);
+
+  return (
+    <div className="messages-list">
+      {messages.map((message, index) => (
+        <div className="message" key={index}>
+          <div className="message-sender">
+            <b>{message.username}</b>
+            <span className="timestamp">{message.timestamp}</span>
+          </div>
+          <div className="message-text">{message.text}</div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function MessageInput() {
+  return (
+    <div className="message-input">
+      <input type="text" placeholder="Type your message..." />
+      <button>Send</button>
     </div>
   );
 }
