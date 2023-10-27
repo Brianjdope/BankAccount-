@@ -9,6 +9,7 @@ function App() {
         <b>👋😺 Welcome to the Main Chatroom! </b>
         <div>This chatroom provides you with new cat facts.</div>
         <div><i>Friday, October 6th</i></div>
+        <div>👤 User Information:</div>
         <MyUserProfile></MyUserProfile>
         <SingleMessage></SingleMessage>
         <SingleMessage></SingleMessage>
@@ -40,8 +41,12 @@ function MyUserProfile(){
 
   return <div>
     <p>Name: {data.name}</p>
-    <p>Location: {data.location}</p>
     <p>Color: {data.color}</p>
+    <p>Location: {data.location}</p>
+    <p>Age: {data.age}</p>
+    <p>Gender: {data.gender}</p>
+    <p>Grade: {data.grade}</p>
+    <p>Status: {data.status}</p>
   </div>
 }
 function SingleMessage() {
