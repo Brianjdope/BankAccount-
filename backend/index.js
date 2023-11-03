@@ -79,9 +79,22 @@ async function getChatRoomMessages() {
 }
 
 const response = {
-    name: "Test",
-    color: "Blue",
-    location: "Test City",
+    name: "Caren",
+    color: "Red",
+    location: "Leonia",
+    age: "17",
+    gender: "Female",
+    grade: "Senior",
+    status: "Online",
+}
+
+// TODO: return a list of channels that the user is in
+const channels = {
+  general: "General",
+  project: "Project",
+  questions: "Q-and-A",
+  random: "Random",
+  zoom: "Zoom-Invite-Links"
 }
 
 app.get('/', (req, res) => {
@@ -93,6 +106,11 @@ app.get('/messages', async (req, res) => {
   res.setHeader('Content-Type', 'application/json');
   const messages = await getChatRoomMessages();
   res.end(JSON.stringify(messages));
+});
+
+app.get('/channels', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(channels));
 })
 
 app.listen(port, () => {

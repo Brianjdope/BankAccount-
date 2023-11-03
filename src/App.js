@@ -21,6 +21,21 @@ function App() {
           <ChatHeader />
           <MessagesList />
           <MessageInput />
+          <b>👋😺 Welcome to the Main Chatroom! </b>
+        <div>This chatroom provides you with new cat facts.</div>
+        <div>👤 User Information:</div>
+        <MyUserProfile></MyUserProfile>
+        <div>Channels:</div>
+        <ListOfChannels></ListOfChannels>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
+        <SingleMessage></SingleMessage>
         </div>
       </main>
     </div>
@@ -37,6 +52,33 @@ function UserProfile() {
     grade: "Senior",
     status: "Online",
   };
+};
+
+function ListOfChannels(){
+  const [data, setData] = useState([]);
+
+  const fetchInfo = () => {
+    return fetch('http://localhost:3000/channels')
+      .then((res) => res.json())
+      .then((d) => setData(d))
+  }
+
+  useEffect(() => {
+    fetchInfo();
+  }, []);
+
+
+  return <div>
+    <li>{data.general}</li>
+    <li>{data.project}</li>
+    <li>{data.questions}</li>
+    <li>{data.random}</li>
+    <li>{data.zoom}</li>
+  </div>
+}
+
+function MyUserProfile(){
+  const [data, setData] = useState([]);
 
   return (
     <div className="user-profile">
@@ -75,7 +117,7 @@ function ChatHeader() {
   );
 }
 
-function MessagesList() {
+function SingleMessage() {
   const names = ['albert', 'brian', 'caren'];
 
   const generateRandomMessage = () => {
