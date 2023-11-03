@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
+  // Define the logo variable or import your logo image
+  const logo = 'your-logo-url.png';
+
   return (
-    <div className="slack-app">
+    <div className = "slack app">
       <header className="slack-header">
         <div className="slack-logo">
           <img src={logo} alt="Slack Logo" />
@@ -28,6 +31,7 @@ function App() {
 }
 
 function UserProfile() {
+  // User data
   const userData = {
     name: "Caren",
     color: "Red",
@@ -42,7 +46,7 @@ function UserProfile() {
     <div className="user-profile">
       <img
         className="profile-picture"
-        src="https://your-profile-picture-url.png"
+        src="https://your-profile-picture-url.png" // Replace with actual picture URL
         alt="User Profile"
       />
       <div className="user-details">
