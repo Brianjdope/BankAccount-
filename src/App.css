@@ -1,4 +1,4 @@
-/* App.css */
+x/* App.css */
 
 .App {
   font-family: Arial, sans-serif;
@@ -26,32 +26,6 @@
   margin-top: 10px;
 }
 
-<<<<<<< HEAD
-.UserInformation {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.SingleMessage {
-  display: flex;
-  margin-top: 20px;
-  align-items: center;
-  width: 400px;
-  background-color: white;
-  border-radius: 10px;
-  padding: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.profile-picture {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-=======
 .App-header {
   background-color: #3c475d;
   min-height: 100vh;
@@ -68,16 +42,12 @@
   width: 120px;
   border: white 4px solid;
   border-radius: 20px;
->>>>>>> 2098391... added changes to backend
   margin-right: 10px;
 }
 
 .message-text {
   flex: 1;
   display: flex;
-<<<<<<< HEAD
-  flex-direction: column;
-=======
   font-size: 32px;
   align-items: start;
   margin-bottom: 32px;
@@ -85,7 +55,6 @@
   background-color: #55627c;
   border-radius: 30px;
   padding: 10px;
->>>>>>> 2098391... added changes to backend
 }
 
 .metadata {
@@ -100,12 +69,8 @@
 }
 
 .timestamp {
-<<<<<<< HEAD
-  color: #555;
-=======
   color: #b6b6b6;
   font-size: 24px;
->>>>>>> 2098391... added changes to backend
 }
 
 .SingleMessage > div {

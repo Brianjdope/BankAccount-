@@ -90,11 +90,11 @@ const response = {
 
 // TODO: return a list of channels that the user is in
 const channels = {
-  general: "General",
-  project: "Project",
-  questions: "Q-and-A",
-  random: "Random",
-  zoom: "Zoom-Invite-Links"
+  general: "#general",
+  project: "#project",
+  questions: "#q-and-a",
+  random: "#random",
+  zoom: "#zoom-invite-lnpinks"
 }
 
 app.get('/', (req, res) => {
