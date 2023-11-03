@@ -14,7 +14,7 @@ function App() {
           />
         </div>
         <div className="team-name">
-          <b>Coding Trio</b>
+          <b>Your Team Name</b>
         </div>
       </header>
       <main className="slack-main">
