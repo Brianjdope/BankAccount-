@@ -2,17 +2,19 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 
 function App() {
-  // Define the logo variable or import your logo image
   const logo = 'your-logo-url.png';
 
   return (
-    <div className = "slack app">
+    <div className="slack app">
       <header className="slack-header">
         <div className="slack-logo">
-          <img src={logo} alt="Slack Logo" />
+          <img
+            src="https://helios-i.mashable.com/imagery/articles/047UsVLCrupUmmsuitpn1nw/hero-image.fill.size_1248x702.v1623374965.png"
+            alt="Slack-Logo"
+          />
         </div>
         <div className="team-name">
-          <b>Your Team Name</b>
+          <b>Your Team Name</b>s
         </div>
       </header>
       <main className="slack-main">
@@ -46,7 +48,6 @@ function App() {
 }
 
 function UserProfile() {
-  // User data
   const userData = {
     name: "Caren",
     color: "Red",
@@ -88,7 +89,7 @@ function MyUserProfile(){
     <div className="user-profile">
       <img
         className="profile-picture"
-        src="https://your-profile-picture-url.png" // Replace with actual picture URL
+        src="https://your-profile-picture-url.png"
         alt="User Profile"
       />
       <div className="user-details">
@@ -100,10 +101,24 @@ function MyUserProfile(){
 }
 
 function ChannelsList() {
-  // You can render a list of channels here
+  const [data, setData] = useState({});
+
+  useEffect(() => {
+    fetch('http://localhost:3000/channels')
+      .then((res) => res.json())
+      .then((d) => setData(d))
+      .catch((error) => console.error("Error fetching channels: ", error));
+  }, []);
+
   return (
     <div className="channels-list">
-      {/* Render a list of channels */}
+      <ul>
+        <li>{data.general}</li>
+        <li>{data.project}</li>
+        <li>{data.questions}</li>
+        <li>{data.random}</li>
+        <li>{data.zoom}</li>
+      </ul>
     </div>
   );
 }
@@ -133,7 +148,6 @@ function SingleMessage() {
     };
   };
 
-  // Simulate a list of messages
   const [messages, setMessages] = useState([]);
 
   useEffect(() => {
