@@ -24,8 +24,8 @@ function App() {
         </div>
         <div className="chat-container">
           <ChatHeader />
-          <MessagesList messages={messages} />
-          <MessageInput setMessages={setMessages} messages={messages} />
+          <MessagesList />
+          <MessageInput />
         </div>
       </main>
     </div>
@@ -42,6 +42,33 @@ function UserProfile() {
     grade: "Senior",
     status: "Online",
   };
+};
+
+function ListOfChannels(){
+  const [data, setData] = useState([]);
+
+  const fetchInfo = () => {
+    return fetch('http://localhost:3000/channels')
+      .then((res) => res.json())
+      .then((d) => setData(d))
+  }
+
+  useEffect(() => {
+    fetchInfo();
+  }, []);
+
+
+  return <div>
+    <li>{data.general}</li>
+    <li>{data.project}</li>
+    <li>{data.questions}</li>
+    <li>{data.random}</li>
+    <li>{data.zoom}</li>
+  </div>
+}
+
+function MyUserProfile(){
+  const [data, setData] = useState([]);
 
   return (
     <div className="user-profile">
@@ -98,7 +125,28 @@ function ChatHeader() {
   );
 }
 
-function MessagesList({ messages }) {
+function MessagesList() {
+  const names = ['albert', 'brian', 'caren'];
+
+  const generateRandomMessage = () => {
+    const thisMessageName = names[Math.floor(Math.random() * names.length)];
+    return {
+      text: "This is a sample message.",
+      username: thisMessageName,
+      timestamp: new Date().toLocaleTimeString(),
+    };
+  };
+
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() => {
+    const newMessages = [];
+    for (let i = 0; i < 10; i++) {
+      newMessages.push(generateRandomMessage());
+    }
+    setMessages(newMessages);
+  }, []);
+
   return (
     <div className="messages-list">
       {messages.map((message, index) => (
