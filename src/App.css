@@ -1,50 +1,43 @@
 x/* App.css */
-
 .App {
   font-family: Arial, sans-serif;
-  background-color: #f0f0f0;
+  background-color: #F0F0F0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
-
 .App-header {
-  background-color: #3f0f40;
+  background-color: #3F0F40;
   color: white;
   padding: 20px;
   text-align: center;
   width: 400px;
   border-radius: 10px;
 }
-
 .App-header b {
   font-size: 24px;
 }
-
 .App-header > div {
   margin-top: 10px;
 }
-
 .App-header {
-  background-color: #3c475d;
+  background-color: #3C475D;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: #709ffe;
+  color: #709FFE;
   padding: 50px;
   font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
-
 .profile-picture {
   width: 120px;
   border: white 4px solid;
   border-radius: 20px;
   margin-right: 10px;
 }
-
 .message-text {
   flex: 1;
   display: flex;
@@ -52,27 +45,23 @@ x/* App.css */
   align-items: start;
   margin-bottom: 32px;
   color: white;
-  background-color: #55627c;
+  background-color: #55627C;
   border-radius: 30px;
   padding: 10px;
 }
-
 .metadata {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
   font-size: 14px;
 }
-
 .username {
   font-weight: bold;
 }
-
 .timestamp {
-  color: #b6b6b6;
+  color: #B6B6B6;
   font-size: 24px;
 }
-
 .SingleMessage > div {
   margin-top: 10px;
   font-size: 16px;
