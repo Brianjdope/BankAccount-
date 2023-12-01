@@ -89,13 +89,7 @@ const response = {
 }
 
 // TODO: return a list of channels that the user is in
-const channels = {
-  general: "#general",
-  project: "#project",
-  questions: "#q-and-a",
-  random: "#random",
-  zoom: "#zoom-invite-lnpinks"
-}
+const channels = ["#general", "#project", "#q-and-a", "#random", "#zoom-invite-links"]
 
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');

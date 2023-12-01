@@ -42,16 +42,12 @@ function App() {
           />
         </div>
         <div className="team-name">
-          <b>Your Team Name</b>
+          <b>Coding Trio</b>
         </div>
       </header>
       <main className="slack-main">
         <div className="sidebar">
-          <b>👋😺 Welcome to the Main Chatroom! </b>
-          <div>This chatroom provides you with new cat facts.</div>
-          <div>👤 User Information:</div>
           <UserProfile />
-          <div>Channels:</div>
           <ChannelsList />
         </div>
         <div className="chat-container">
@@ -63,7 +59,6 @@ function App() {
     </div>
   );
 }
-
 
 function UserProfile() {
   const userData = {
@@ -106,8 +101,6 @@ function ChannelsList() {
     setSelectedChannel(channelName);
 
     try {
-      // Simulating API call for messages of selected channel
-      // Replace this with actual API call using fetch
       const response = await fetch(`http://localhost:3000/messages/${channelName}`);
       if (!response.ok) {
         throw new Error('Failed to fetch messages');
@@ -133,7 +126,6 @@ function ChannelsList() {
         <div className="channel-details">
           <h3>Messages for {selectedChannel}</h3>
           <div className="messages-for-channel">
-            {/* Display messages for the selected channel here */}
             {channelMessages.map((message, index) => (
               <div key={index} className="channel-message">
                 <b>{message.username}</b>
@@ -189,8 +181,7 @@ function MessageInput({ addNewMessage }) {
       timestamp: timestamp,
     };
 
-    await addNewMessage(messageToAdd); // Call the function to add the message
-
+    await addNewMessage(messageToAdd);
     setNewMessage('');
   };
 
