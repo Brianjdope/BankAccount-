@@ -10,6 +10,28 @@ function App() {
   useEffect(() => {
     localStorage.setItem('chatMessages', JSON.stringify(messages));
   }, [messages]);
+
+  const addNewMessage = async (newMessage) => {
+    try {
+      const response = await fetch('http://localhost:3000/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newMessage),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to add message');
+      }
+
+      const data = await response.json();
+      setMessages([...messages, data]); // Update state with the new message
+    } catch (error) {
+      console.error('Error adding message:', error);
+    }
+  };
+
   return (
     <div className="slack app">
       <header className="slack-header">
@@ -35,12 +57,13 @@ function App() {
         <div className="chat-container">
           <ChatHeader />
           <MessagesList messages={messages} />
-          <MessageInput setMessages={setMessages} messages={messages} />
+          <MessageInput addNewMessage={addNewMessage} />
         </div>
       </main>
     </div>
   );
 }
+
 
 function UserProfile() {
   const userData = {
@@ -152,20 +175,22 @@ function MessagesList({ messages }) {
   );
 }
 
-function MessageInput({ setMessages, messages }) {
+function MessageInput({ addNewMessage }) {
   const [newMessage, setNewMessage] = useState('');
-  const names = ['Albert', 'Caren', 'Brian']; // List of member names
+  const names = ['Albert', 'Caren', 'Brian'];
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const randomName = names[Math.floor(Math.random() * names.length)];
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      {
-        text: newMessage,
-        username: randomName,
-        timestamp: new Date().toLocaleTimeString(),
-      },
-    ]);
+    const timestamp = new Date().toLocaleTimeString();
+
+    const messageToAdd = {
+      text: newMessage,
+      username: randomName,
+      timestamp: timestamp,
+    };
+
+    await addNewMessage(messageToAdd); // Call the function to add the message
+
     setNewMessage('');
   };
 
