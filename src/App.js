@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
+
 function App() {
   const [messages, setMessages] = useState([]);
 
@@ -13,16 +14,12 @@ function App() {
           />
         </div>
         <div className="team-name">
-          <b>Your Team Name</b>
+          <b>Coding Trio</b>
         </div>
       </header>
       <main className="slack-main">
         <div className="sidebar">
-        <b>👋😺 Welcome to the Main Chatroom! </b>
-          <div>This chatroom provides you with new cat facts.</div>
-          <div>👤 User Information:</div>
           <UserProfile />
-          <div>Channels:</div>
           <ChannelsList />
         </div>
         <div className="chat-container">
@@ -34,8 +31,8 @@ function App() {
     </div>
   );
 }
+
 function UserProfile() {
-  // User data
   const userData = {
     name: "Caren",
     color: "Red",
@@ -45,6 +42,7 @@ function UserProfile() {
     grade: "Senior",
     status: "Online",
   };
+
   return (
     <div className="user-profile">
       <img
@@ -66,27 +64,25 @@ function UserProfile() {
   );
 }
 
-function ChannelsList(){
-  const [data, setData] = useState([]);
-
-  const fetchInfo = () => {
-    return fetch('http://localhost:3000/channels')
-      .then((res) => res.json())
-      .then((d) => setData(d))
-  }
+function ChannelsList() {
+  const [channels, setChannels] = useState([]);
 
   useEffect(() => {
-    fetchInfo();
+    fetch('http://localhost:3000/channels')
+      .then((res) => res.json())
+      .then((data) => setChannels(data))
+      .catch((error) => console.error("Error fetching channels: ", error));
   }, []);
 
-
-  return <div>
-    <li>{data.general}</li>
-    <li>{data.project}</li>
-    <li>{data.questions}</li>
-    <li>{data.random}</li>
-    <li>{data.zoom}</li>
-  </div>
+  return (
+    <div className="channels-list">
+      <ul>
+        {channels.map((channel, index) => (
+            <li key={index}>{channel}</li>
+        ))}
+      </ul>
+    </div>
+  );
 }
 
 function ChatHeader() {
