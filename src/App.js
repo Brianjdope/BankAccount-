@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-function App() {
-  const [messages, setMessages] = useState([]);
 
+function App() {
+  const [messages, setMessages] = useState(() => {
+    const storedMessages = localStorage.getItem('chatMessages');
+    return storedMessages ? JSON.parse(storedMessages) : [];
+  });
+
+  useEffect(() => {
+    localStorage.setItem('chatMessages', JSON.stringify(messages));
+  }, [messages]);
   return (
     <div className="slack app">
       <header className="slack-header">
@@ -18,7 +25,7 @@ function App() {
       </header>
       <main className="slack-main">
         <div className="sidebar">
-        <b>👋😺 Welcome to the Main Chatroom! </b>
+          <b>👋😺 Welcome to the Main Chatroom! </b>
           <div>This chatroom provides you with new cat facts.</div>
           <div>👤 User Information:</div>
           <UserProfile />
@@ -34,17 +41,18 @@ function App() {
     </div>
   );
 }
+
 function UserProfile() {
-  // User data
   const userData = {
-    name: "Caren",
-    color: "Red",
-    location: "Leonia",
-    age: "17",
-    gender: "Female",
-    grade: "Senior",
-    status: "Online",
+    name: 'Caren',
+    color: 'Red',
+    location: 'Leonia',
+    age: '17',
+    gender: 'Female',
+    grade: 'Senior',
+    status: 'Online',
   };
+
   return (
     <div className="user-profile">
       <img
@@ -66,27 +74,55 @@ function UserProfile() {
   );
 }
 
-function ChannelsList(){
-  const [data, setData] = useState([]);
+function ChannelsList() {
+  const [selectedChannel, setSelectedChannel] = useState('');
+  const [channelMessages, setChannelMessages] = useState([]);
+  const specificChannels = ['#general', '#project', '#q&a', '#random', '#zoom invite links'];
 
-  const fetchInfo = () => {
-    return fetch('http://localhost:3000/channels')
-      .then((res) => res.json())
-      .then((d) => setData(d))
-  }
+  const handleChannelChange = async (channelName) => {
+    setSelectedChannel(channelName);
 
-  useEffect(() => {
-    fetchInfo();
-  }, []);
+    try {
+      // Simulating API call for messages of selected channel
+      // Replace this with actual API call using fetch
+      const response = await fetch(`http://localhost:3000/messages/${channelName}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch messages');
+      }
+      const data = await response.json();
+      setChannelMessages(data);
+    } catch (error) {
+      console.error(`Error fetching ${channelName} messages:`, error);
+    }
+  };
 
-
-  return <div>
-    <li>{data.general}</li>
-    <li>{data.project}</li>
-    <li>{data.questions}</li>
-    <li>{data.random}</li>
-    <li>{data.zoom}</li>
-  </div>
+  return (
+    <div className="channels-list">
+      <select className="channel-dropdown" value={selectedChannel} onChange={(e) => handleChannelChange(e.target.value)}>
+        <option value="">Select a channel</option>
+        {specificChannels.map((channel, index) => (
+          <option key={index} value={channel}>
+            {channel}
+          </option>
+        ))}
+      </select>
+      {selectedChannel && (
+        <div className="channel-details">
+          <h3>Messages for {selectedChannel}</h3>
+          <div className="messages-for-channel">
+            {/* Display messages for the selected channel here */}
+            {channelMessages.map((message, index) => (
+              <div key={index} className="channel-message">
+                <b>{message.username}</b>
+                <span className="message-timestamp">{message.timestamp}</span>
+                <p>{message.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }
 
 function ChatHeader() {
@@ -95,9 +131,7 @@ function ChatHeader() {
       <div className="channel-info">
         <b>#general</b>
       </div>
-      <div className="members-count">
-        Members: 100
-      </div>
+      <div className="members-count">Members: 100</div>
     </div>
   );
 }
@@ -124,7 +158,7 @@ function MessageInput({ setMessages, messages }) {
 
   const handleSubmit = () => {
     const randomName = names[Math.floor(Math.random() * names.length)];
-    setMessages(prevMessages => [
+    setMessages((prevMessages) => [
       ...prevMessages,
       {
         text: newMessage,
