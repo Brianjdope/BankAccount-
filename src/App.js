@@ -73,7 +73,7 @@ function ChannelsList() {
       .then((data) => setChannels(data))
       .catch((error) => console.error("Error fetching channels: ", error));
   }, []);
-  console.log(channels);
+
   return (
     <div className="channels-list">
       <ul>
@@ -84,15 +84,6 @@ function ChannelsList() {
     </div>
   );
 }
-
-// <div className="message" key={index}>
-//    <div className="message-sender">
-//      <b>{message.username}</b>
-//      <span className="timestamp">{message.timestamp}</span>
-//    </div>
-
-//    <div className="message-text">{message.text}</div>
-// </div>
 
 function ChatHeader() {
   return (
