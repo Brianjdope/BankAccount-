@@ -2,6 +2,8 @@ const express = require('express')
 const cors = require("cors");
 const app = express()
 const port = 3000
+const mongoose = require('mongoose');
+const UserManager = require('./database')
 
 
 app.use(cors());
@@ -107,6 +109,11 @@ app.get('/channels', (req, res) => {
   res.end(JSON.stringify(channels));
 })
 
-app.listen(port, () => {
+app.listen(port, async () => {
   console.log(`Example app listening on port ${port}`)
+  await mongoose.connect('mongodb://127.0.0.1:27017/test');
+})
+
+app.get('/login', async (req, res) => {
+  console.log(await UserManager.getUser('John Doe'))
 })
