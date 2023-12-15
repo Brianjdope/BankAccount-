@@ -91,7 +91,18 @@ const response = {
 }
 
 // TODO: return a list of channels that the user is in
-const channels = ["#general", "#project", "#q-and-a", "#random", "#zoom-invite-links"]
+const channels = ["#general", "#project", "#q-and-a", "#random", "#zoom-invite-links"];
+
+app.post('/newMessage', (req, res) => {
+  const newMessage = {
+      id: '57420C5C',
+      name: "Caren",
+      message: "Tacocat backwards is tacocat.",
+      timestamp: 1700136286620,
+      reactions: ['🌮']
+    }
+  chatRoomMessages.push(newMessage);
+})
 
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');
