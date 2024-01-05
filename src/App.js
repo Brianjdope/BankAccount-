@@ -66,7 +66,7 @@ function App() {
             <MessagesList messages={messages} />
           </div>
           <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
-            <MessageInput setMessages={setMessages} messages={messages} />
+            <MessageInput setMessages={setMessages} messages={messages} addNewMessage={addNewMessage}/>
           </div>
         </div>
 
