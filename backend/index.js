@@ -5,8 +5,10 @@ const port = 3000
 const mongoose = require('mongoose');
 const UserManager = require('./database')
 
+const bodyParser = require('body-parser');
 
 app.use(cors());
+app.use( bodyParser.json() );
 
 const chatRoomMessages = [
   {
@@ -91,7 +93,13 @@ const response = {
 }
 
 // TODO: return a list of channels that the user is in
-const channels = ["#general", "#project", "#q-and-a", "#random", "#zoom-invite-links"]
+const channels = ["#general", "#project", "#q-and-a", "#random", "#zoom-invite-links"];
+
+app.post('/messages', (req, res) => {
+  const newMessage = req.body;
+  chatRoomMessages.push(newMessage);
+  res.end(JSON.stringify(chatRoomMessages));
+})
 
 app.get('/', (req, res) => {
   res.setHeader('Content-Type', 'application/json');

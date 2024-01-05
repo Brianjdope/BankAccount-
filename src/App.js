@@ -36,25 +36,40 @@ function App() {
     <div className="slack app">
       <header className="slack-header">
         <div className="slack-logo">
+        <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
           <img
             src="https://helios-i.mashable.com/imagery/articles/047UsVLCrupUmmsuitpn1nw/hero-image.fill.size_1248x702.v1623374965.png"
+            width={312} height={175}
             alt="Slack-Logo"
           />
+          </div>
         </div>
         <div className="team-name">
-          <b>Coding Trio</b>
+          <b>LHS Externship '23-24</b>
         </div>
       </header>
       <main className="slack-main">
-        <div className="sidebar">
-          <UserProfile />
-          <ChannelsList />
+        <div style = {{float: 'right'}}> 
+          <UserProfile/>
         </div>
+
+        <div className="sidebar">
+          <div style = {{float: 'left'}}> 
+            <ChannelsList/>
+            <ChatHeader/>
+          </div>
+        </div>
+        
         <div className="chat-container">
           <ChatHeader />
-          <MessagesList messages={messages} />
-          <MessageInput addNewMessage={addNewMessage} />
+          <div style={{display: 'flex', justifyContent:'center', alignItems:'center'}}>
+            <MessagesList messages={messages} />
+          </div>
+          <div style={{display: 'flex',  justifyContent:'center', alignItems:'center'}}>
+            <MessageInput setMessages={setMessages} messages={messages} addNewMessage={addNewMessage}/>
+          </div>
         </div>
+
       </main>
     </div>
   );
@@ -71,8 +86,11 @@ function UserProfile() {
     status: 'Online',
   };
 
-  return (
+  return (  
     <div className="user-profile">
+      <div className="profile">
+        <b>Profile</b>
+      </div>
       <img
         className="profile-picture"
         src="https://t3.ftcdn.net/jpg/00/79/16/32/360_F_79163266_ly2vUi8mopQFcbH26QuYwvTS85XcKLPv.jpg"
