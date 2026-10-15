@@ -12,7 +12,7 @@ an Express backend. Team project with Caren and Albert Chung.
 This is a student prototype; several parts of the UI are placeholders.
 
 - Channel dropdown with a hardcoded list: `#general`, `#project`, `#q&a`, `#random`, `#zoom invite links`
-- Message feed that shows sender name and timestamp, saved in the browser's `localStorage`
+- Message feed, saved in the browser's `localStorage`, meant to show sender name and timestamp; it currently shows blank entries (see Known issues)
 - Message input that sends each message to `POST /messages`; the sender name is picked at random from Albert, Caren, and Brian
 - User profile panel with hardcoded mock data (Caren)
 - Chat header with a static `#general` title and "Members: 100" count
